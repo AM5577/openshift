@@ -1,0 +1,89 @@
+1 - ansible ad-hoc command
+2 - playbook - file--> ansible instructions in YAML format
+
+ansible host_pattern -m module_name -a "opt=val"
+host_pattern :
+	all -  all server from inv file
+	mn1 - only 1 server
+	mn1,mn2 - 2 servers
+	all,!mn3
+	
+ansible all -m ping
+
+sshp
+	scp
+	ftp
+	sftp
+
+
+for i in $(cat servers.txt)
+do
+	ping -c 2 $i
+done
+
+
+
+
+[webservers]
+web1.example.com
+192.168.1.101
+
+[dbservers]
+db1.example.com
+192.168.1.102
+
+[servers:children]
+webservers
+dbservers
+
+-----------------
+web1.example.com
+192.168.1.101
+db1.example.com
+192.168.1.102
+
+ansible servers -m package -a "name=* state=latest"
+
+
+
+
+-m <module>: Specify the module to use (e.g., ping, command, apt).
+-a "<arguments>": Arguments to pass to the module.
+-i <inventory_file>: Specify inventory file path (if not default).
+-u <remote_user>: Connect as this user.
+--become (or -b): Run tasks with privilege escalation (e.g., sudo).
+
+
+lsblk---->
+
+-m user -a "name=demo state=present"
+	demo
+	changed=true
+-m user -a "name=demo state=present"
+	ok - changed =false
+	
+-m command,shell,raw
+   command "cmd"
+   raw,shell "ip a | grep inet;echo hi /tmp/demo"
+   
+   
+ ansible all -m ansible.builtin.ping 
+ ansible all -m ping
+
+
+- name: Add the user 'johnd' with a specific uid and a primary group of 'admin'
+  ansible.builtin.user:
+    name: johnd
+    comment: John Doe
+    uid: 1040
+    group: admin
+
+ansible all -m user -a "name=johnd comment='John Doe' uid=1040 group=admin "
+
+
+
+
+
+
+
+

@@ -1,0 +1,89 @@
+
+
+root
+	file - 644
+	dir -  755
+UMASK 0022 = 022
+
+file - 666
+dir  - 777
+
+default
+	file	666
+sub umask	022
+			644	--> def file perms
+			
+	dir		777
+sub umask	022
+			755	--> def dir perms			
+----------------------------------
+		
+file - 666
+       077--> umask
+       600
+	   
+dir -  777
+	   077--> umask 
+       700	   
+	 
+1 - per session basis - student
+	umask 077
+	
+2 - permanently per user basis - student
+3 - permanently all users globally	 - all users 
+
+
+student -> passwd ->/etc/login.defs - 022 - 0022
+					/etc/bashrc - 
+					/etc/profile
+					~/.bash_profile
+					~/.bashrc--------> umask 077
+											-->desktop
+
+
+
+4 -suid - set user id -> only on executable files												
+	student -> passwd root:root 
+	               --> /etc/shadow
+	rwSr-xr-x	
+  chmod u+s	/tmp/xxxx -> root
+  chmod 4755 /tmp/xxxx 
+  
+2 sgid - set group id  
+	
+  
+					
+					
+	/home/consultant  owner:consultants
+			consultants grp -> rwx
+
+world writable dir	
+	777
+	drwxrwxrwx - 
+	sticky bit - 1 o+t
+		s1 -> test1
+		s2 -> test2
+		s3 -> rm test1 test2
+
+-----------------------
+rw-r--r-- root root test1.pdf
+student - rw on test1.pdf	
+	
+rw-r--r-- root root test1.pdf	
+ACL - Access Control list
+
+setfacl -m "<format>" test1.pdf
+
+
+setfacl -m "u:student:rw-" test1.pdf 
+setfacl -m "g:admin:rw-" test1.pdf 
+
+setfacl -x "u:student" test1.pdf
+setfacl -x "g:admin" test1.pdf
+
+setfacl -b test1.pdf
+
+getfacl test1.pdf
+
+-b = --remove-all
+     back to normal	

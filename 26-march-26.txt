@@ -1,0 +1,66 @@
+
+Pentuim 3 - 800MHZ
+pentuim4  - 1GHZ 
+  dual core - 2ghz 2 cpus - 2 process at a time
+  8 core - 2th = 16th
+  CPU - 3-4ghz
+a
+b
+c
+d
+e
+f
+g
+passwd
+h
+i
+
+high				lower
+-20------0----------20
+
+cmd,app,service - def pri =  -19
+
+CPU
+		a +19
+		b +19
+		c +19
+		d +19
+		e +19
+		f +19
+		
+		dummy  -5
+		
+
+		
+nice -n -5 ping google.com > out 2> err &		
+Pri = +19 - (-5) = 24
+Nice = -5
+
+sleep 10000 &
+pri = +19
+Nice = 0
+
+
+login
+	
+	ssh - nohup xyz &
+	logout ---> xyz terminate
+	
+	
+	CPU
+	q
+	w
+	e
+	t
+	r
+	j
+	l
+	
+	
+start stop restart reload . . 
+systemctl 
+
+oracle ->
+/usr/sbin/oracle &
+systemctl start oracle
+

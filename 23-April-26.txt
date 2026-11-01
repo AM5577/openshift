@@ -1,0 +1,83 @@
+tar 
+tape archive
+docs - multiple files -> 1 single file - archive - docs.tar	
+										   gzip    docs.tar.gz
+										   bzip2   docs.bz2
+										   
+xx.zip
+xx.rar
+xx.7zip										   
+
+tar -opts archivename source
+/usr/bin/ --> sourcce
+cmds.tar.gz
+
+134
+
+
+------------------------
+Phase 1
+deploy a web server  and host a website
+index.html->Hello World
+RHEL family - rhel,centos fedora,alma,rocky ,arch...
+			  httpd- hypertext transfer protocol daemon
+			  80 - all 80 in firewall
+			   http/https
+				80    443
+				
+dnf install httpd -y
+systemctl enable --now httpd
+echo "Hello world" > /var/www/html/index.html
+systemctl enable --now firewalld
+firewall-cmd --add-service=http --permanent
+firewall-cmd --reload
+
+
+
+Phase 2
+deploy a web server  and host a website
+/var/www/html/ -> /site  index.html->Hello World
+RHEL family - rhel,centos fedora,alma,rocky ,arch...
+			  httpd- hypertext transfer protocol daemon
+			  8283 - all 8283 in firewall
+			
+
+dnf install httpd -y
+systemctl enable --now httpd
+vi /etc/httpd/conf/httpd.conf
+Listen 80->8283
+:wq!
+systemctl restart httpd
+
+echo "Hello world" > /var/www/html/index.html
+systemctl enable --now firewalld
+firewall-cmd --add-port=8283/tcp --permanent
+firewall-cmd --reload
+
+
+SELINUX -mode
+	enforcing - active,logs
+	permissive - not active, logs
+	disabled - not active no logs
+
+global - 
+	/etc/selinux/config -> change reboot system
+per session-	
+	getenforce
+	setenforce
+
+sestatus -v	
+
+
+
+0.0.0.0:22 users:(("proc_ctx=system_u:system_r:sshd_t:))
+
+clear
+semanage port --list
+
+http_port_t  -> 8283
+semanage port -a -p tcp -t http_port_t 8283
+
+
+
+systemctl enable --now autofs 

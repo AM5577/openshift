@@ -1,0 +1,107 @@
+install  webserver on 100 servers
+dnf install httpd
+package:
+- name: Install ntpdate
+ansible.builtin.package:
+name: ntpdate
+state: present
+
+systemctl enable --now httpd
+service:
+- name: Enable service httpd, and not touch the state
+ansible.builtin.service:
+name: httpd
+state: started
+enabled: yes
+
+firewall-cmd --add-service=http --permanent
+firewall-cmd --reload
+firewalld:
+- name: Permanently enable https service, also enable it immediately if possible
+ansible.posix.firewalld:
+service: https
+state: enabled
+permanent: true
+immediate: true
+
+echo "Homepage" > /var/www/html/index.html
+shell: echo "Welcome toHomepage" > /var/www/html/index.html
+copy:
+- name: Copy using inline content
+ansible.builtin.copy:
+content: '# This file was moved to /etc/other.conf'
+dest: /etc/mine.conf
+		
+Playbook (YAML)
+xxx.yml OR xxx.yaml
+
+shell
+var=value
+
+var: value
+
+fruits=[orange,grapes,mangoes]
+
+fruits:
+  - orange
+  - grapes
+  - mangoes
+  
+
+
+dbadmin
+P = staff
+S = wheel
+C = "test user"
+uid = 2000
+
+- name: Ensure group "somegroup" exists
+  ansible.builtin.group:
+    name: admin
+    state: present
+	
+- name: Add the user 'dbadmin'  
+  ansible.builtin.user:
+    name: dbadmin
+    comment: test user
+    uid: 2000
+    group: admin
+
+  
+webserver.yml  
+--- 
+- name: play#1 - purpose - comment
+  hosts: all
+  tasks:
+    - name: comment for the mod
+	  mod:
+	    opt: value
+		opt: value
+	- name: comment for the mod
+	  mod:
+	    opt: value
+		opt: value
+    - name: comment for the mod
+	  mod:
+        opt: value
+		opt: value 	
+- name: play#2 - comment
+  hosts: all
+  tasks:
+    - name: run cmd1;cmd2
+      shell:
+    - name: print the output
+      debug:	
+	  
+	  
+allow port/sevice permanent immediatly
+	 
+
+100	
+	httpd
+		50 ubuntu - apt install httpd
+			apache2.deb
+		20 suse - zyppr zypp in httpd
+			apache2.rpm
+ 		30 rhel - dnf   dnf install httpd
+			httpd.rpm

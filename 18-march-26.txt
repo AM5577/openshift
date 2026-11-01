@@ -1,0 +1,49 @@
+date > /tmp/saved-timestamp
+
+tail -n 100 /var/log/secure > /tmp/last-100-log-secure
+
+cat step1.sh step2.log step3 step4 > /tmp/all-four-steps-in-one
+ls -a > my-file-names
+echo "new line of information" >> /tmp/many-lines-of-information
+
+
+ip a | grep inet
+
+ls -l /etc | tee /tmp/saved-output | wc -l
+
+
+vi - visual editor
+nano - 
+
+modes - 
+	command - ESC key  - default
+		save :w
+		close :q
+		save and  close :wq
+		close without saving changes - :q! 
+		copy lines: 10yy 2yy
+		paste p
+		delete lines 10dd 4dd
+		undo u
+		show line numbers : se nu
+	insert - i , a ,insert
+		start typing
+		
+
+/etc/passwd
+					
+student:x:1000:1000:student:/home/student:/bin/bash
+username:x:uid:gid:comment:home_dir_loc:assigned shell
+
+/etc/group
+/etc/shadow
+
+As root
+
+add user -> new grp 
+	demo    demo
+useradd demo
+	/etc/passwd
+		demo:x:1002:1004::/home/demo:/bin/bash
+	/etc/default/useradd
+    /etc/login.defs		

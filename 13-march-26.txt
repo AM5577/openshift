@@ -1,0 +1,40 @@
+shell script 
+Bash shell script
+
+file
+	multiple cmds
+	sequence
+	add control - if then else
+		        - loop till some some condition fails
+
+Login->				
+	username=student
+	hostname=devops.exmaple.com
+	language=en_us
+	home=/home/student 
+	shell=/use/bin/bash	
+
+	20+			
+
+ls --> bash-->
+		$PATH	
+			/home/student/.local/bin
+			/home/student/bin
+			/usr/local/bin
+			/usr/local/sbin
+			/usr/bin/ls-----> translte--->kernel--->HDD
+												--->video card ---> monitor
+			/usr/sbin
+			
+PATH=/home/student/.local/bin:/home/student/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin	
+
+
+
+/etc/sudoers
+
+sudo config
+	SA with full access
+	DE with full access
+	Client users with full access
+	APP teams with limited access
+		backup -> dsmcad dsmcad-sched

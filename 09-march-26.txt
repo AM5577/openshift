@@ -1,0 +1,14 @@
+obtain ISO - RHEL 10 / centos stream 10
+download and install application
+create vm
+
+/
+ --
+ --
+ --
+ --
+ 
+ 
+ Linux Dir Struct
+ Linux Arch
+	Shell and Kernel

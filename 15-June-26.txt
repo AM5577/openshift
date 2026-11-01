@@ -1,0 +1,153 @@
+crc on vm - (hw virt in a vm)
+				laptop - amd processor - hw virt in a vm
+
+locally
+	windows-pro--hyper-v
+	mac 16gb 40gb disk
+	
+crc config set preset openshift
+crc setup
+crc start---40gb	
+		22pods--image-1gb+
+		
+30-trial - sandbox https://sandbox.redhat.com/
+		
+	
+	
+jenkins - jenkins file
+			agent label testing	
+			stage-build image
+			 sh 'podman build -f Containerfil -t pyapp:latest '
+			stage-push
+			stage-deploy
+	github
+	agents(server where app will be deployed)
+
+github--->mod--->
+				CI CD
+
+===============ACCESS OC CLUSTER via CLI
+oc client command
+
+windows
+	c:\openshift
+	download zip file here
+	oc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hosts
+127.0.0.1 api.crc.testing console-openshift-console.apps-crc.testing oauth-openshift.apps-crc.testing
+
+
+####OPTION 1  - Local install
+#### install oc client
+# 1. Create a dedicated folder for the OpenShift CLI
+New-Item -ItemType Directory -Force -Path "C:\OpenShiftCLI"
+
+# 2. Download the latest Windows client zip file
+Invoke-WebRequest -Uri "https://downloads-openshift-console.apps.rm3.7wse.p1.openshiftapps.com/amd64/windows/oc.zip" -OutFile "C:\OpenShiftCLI\oc.zip"
+
+# 3. Extract the contents (oc.exe and kubectl.exe)
+Expand-Archive -Path "C:\OpenShiftCLI\oc.zip" -DestinationPath "C:\OpenShiftCLI" -Force
+
+# 4. Permanently add the folder to your User PATH
+$userPath = [Environment]::GetEnvironmentVariable("Path", "User")
+if ($userPath -notmatch "C:\\OpenShiftCLI") {
+    [Environment]::SetEnvironmentVariable("Path", "$userPath;C:\OpenShiftCLI", "User")
+}
+
+$env:Path += ";C:\OpenShiftCLI"
+oc version --client
+  
+####port forwarding PS  if in another system
+C:\Users\amitf> ssh -L 443:127.0.0.1:443 -L 6443:127.0.0.1:6443 amitbhatt@192.168.1.23
+
+####webui
+https://console-openshift-console.apps-crc.testing
+
+####Log in as administrator:
+  Username: kubeadmin
+  Password: 2LEjt-VnfSp-Lo5bQ-xL7yu
+
+####Log in as user:
+  Username: developer
+  Password: developer
+
+####Use the 'oc' command line interface:
+  $ eval $(crc oc-env)
+  $ oc login -u developer https://api.crc.testing:6443
+  
+  
+####Option 2 - Redhat Developr sandbox https://sandbox.redhat.com/
+####open terminal in sandbox
+oc get pods
+oc project  
+os get ns
+oc new.project oc-1
+
+
+####open local terminal
+####install oc client
+wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz
+tar -xvf openshift-client-linux.tar.gz
+bash -c 'oc completion bash > /etc/bash_completion.d/oc_completion'
+source /etc/bash_completion.d/oc_completion
+ui-->copy login command -> display token
+oc login --token=sha256~TuBt0kJBAx9dwlka7D9sdrDPIgsJzbew4QXhBdW9-mI --server=https://api.rm3.7wse.p1.openshiftapps.com:6443
+
+
+
+
+
+Red Hat OpenShift Key Concepts
+
+Pods: The smallest unit of a Kubernetes-managed containerized application. A pod consists of one or more containers.
+
+Deployments: The operational unit that provides granular management of a running application.
+
+Projects: A Kubernetes namespace with additional annotations that provide multitenancy scoping for applications.
+
+Routes: Networking configuration to expose your applications and services to resources outside the cluster.
+
+Operators: Packaged Kubernetes applications that extend cluster functions.
+
+
+#### click conpute-node-crc-terminal
+chroot /host
+systemctl status kubelet
+
+
+
+
+####Create Source-to-Image application
+ecosystem----software catalogue----Python - Build and run Python 3.12-minimal applications on UBI 10. For more information about using this builder 
+
+
+
+

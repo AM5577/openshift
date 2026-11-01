@@ -1,0 +1,102 @@
+
+PV
+	add new pv
+		pvcreate /dev/device
+	remove pv
+		pvremove /dev/device # make sure lvm data is migrated
+	move lvm data from pv
+		pvmove /dev/device
+VG
+	create vg
+		vgcreate vgname /dev/pvdevice
+	extend vg
+		vgextend vgname /dev/device # add new pv 
+	reduce vg
+		vgreduce vgname /dev/device # make sure lvm data is migrated
+	remove vg
+		vgremove vgname # all lvs from this vg are not in use and removed
+LV	
+	create lv
+		lvcreate -L size{M,G,T,P} -n lv_name vg_name
+	extend lv
+		lvextend -L targetsize /dev/vgname/lvname
+		ext4 - resize2fs /dev/vgname/lvname
+		xfs - xfs_growfs /dev/vgname/lvname
+	reduce lv
+	
+		umount /mountpoint
+		e2fsck -f /dev/vgname/lvname
+		
+		resize2fs /dev/mapper/vgname-lvname targetsize
+		
+		lvreduce -L 5G /dev/mapper/vg_data-lv_lv1
+		
+		
+		mount /dev/mapper/vgname-lvname /mountpoint
+		df -h
+
+	remove lv
+		lvremove /dev/vgname/lvname # lv is umounted
+		
+		
+		
+		
+		
+		
+1. Log in to VM as the student user.	
+2. Create the /home/student/grading directory.
+
+3. Create three empty files called grade1, grade2, and grade3, in the /home/student/grading directory.
+
+4. Capture the first five lines of the /etc/passwd file in the /home/student/grading/review.txt file.
+	head -n 5 /etc/passwd > /home/student/grading/review.txt
+	
+5. Append the last three lines of the /etc/passwd file to the /home/student/grading/review.txt file. Do not overwrite any existing text in the /home/student/grading/review.txt file.
+
+
+6. Copy the /home/student/grading/review.txt file to the /home/student/grading/review-copy.txt file.	
+	cd /home/student/grading/
+	cp review.txt review-copy.txt
+
+	
+7. Edit the /home/student/grading/review-copy.txt file so that the user studet details appears twice.
+
+8. Edit the /home/student/grading/review-copy.txt file to remove root user details.
+
+9. Create the /home/student/hardcopy hard link to the /home/student/grading/grade1 file. You must create the hard link after completing the earlier step to create the /home/student/grading/grade1 file.
+
+10. Create the /home/student/softcopy symbolic link to the /home/student/grading/grade2 file.
+
+11. Save the output of a command that lists the contents of the /boot directory to the /home/student/grading/longlisting.txt file. The output should be a "long listing" that includes file permissions, owner and group owner, size, and modification date of each file. The output should omit hidden files.
+		
+		
+		
+1. Log in to VM as the student user.
+
+2. Use top command to identify and terminate the process that currently uses the most CPU time.
+
+3. Create the database group with a GID of 50000.
+4. Create the dbadmin1 user and configure it with the following requirements:
+  1. Add the database group as a supplementary group.
+  2. Set the password to redhat and force a password change on first login.
+  3. Allow the password to change after 10 days since the day of the last password change.
+  4. Set the password expiration to 30 days since the day of the last password change.
+  5. Allow the user to use the sudo command to run any command as the superuser.
+  6. Configure the default umask as 007 for the dbadmin user.
+  
+  
+5. Create the /home/dbadmin1/grading/review2 directory with dbadmin1 as the owning user and the database group as the owning group.
+6. Configure the /home/dbadmin1/grading/review2 directory so that the database group owns any file or sub-directory that is created in this directory, irrespective of which user created the file. Configure the permissions on the directory to allow members of the database group to access the directory and to create contents in it. All other users should have read and execute permissions on the directory.
+7. Ensure that users are allowed to delete only files that they own from the /home/dbadmin1/grading/review2 directory		
+
+
+
+
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+dd if=/dev/zero of=/dev/null &
+
+1024M = 1G
+blocksize -1M
+# of blocks- 1024

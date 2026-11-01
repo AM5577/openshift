@@ -1,0 +1,71 @@
+file
+	cmds
+	cmds
+	if conf = true
+	then cmd
+	else cmd
+	
+	loop 20X cmd
+	
+test.sh
+		chmod +x test.sh
+		/home/student/test.sh
+		./test.sh
+		bash test.sh
+		move the sh file to any of the paths metioned
+		in PATH
+		
+#!/bin/bash
+
+
+input from user
+variable
+
+define = assign
+type - 
+		string - acdeasdasd,john = ' ' / " "
+		int - 021341231232
+		float - 132434.322
+		boolean 0/1 , true /false
+
+fname="John"
+age=40
+echo "Hello $fname, your age is $age"
+"Hello John, your age is 40"
+
+ls  /etc
+./test.sh amit 30 qw qw qw qw 
+$1
+$2
+
+$# -> 6
+
+
+if [ CONDITION ]
+then
+	<true block>
+else	
+	<false block>
+fi
+
+
+
+
+github - > public-private
+github enterprise server - RPM - 
+github managed users - GEMU
+	github - update
+	
+	
+	var = "a" -> 1byte
+	var = 30 -> 2bytes
+	var = "hello" 2bytes
+	
+	linux
+	user --> cmd--bash shell-->kernel
+			 code--python interpreter ->kernel 	
+			 
+	item   value
+	apple 	$2
+	grapes  $1
+

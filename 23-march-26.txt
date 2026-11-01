@@ -1,0 +1,77 @@
+useradd usermod userdel
+groupadd groupdel
+passwd 
+
+sudo - /etc/sudoers  -> file
+	   /etc/sudoers.d/	  -> dir
+
+RBAC
+	linuxsa -> all
+	IAM -> useradd usermod userdel groupadd groupdel passwd
+nano /etc/sudoers.d/linuxsa	
+	 %linuxsa ALL=(ALL) NOPASSWD: ALL
+nano /etc/sudoers.d/iam
+	 %iam ALL=(ALL) /sbin/useradd,/sbin/usermod//sbin/userdel....
+visudo -c
+	
+
+
+demo -> demo (p)
+     -> wheel (s)
+
+touch file1
+		userowner	group owner
+file1 	demo		demo	
+
+rw-rw-r-- root wheel data.pdf
+
+ls -l demo.pdf
+- rw- r-- r-- . 1 root root  demo.pdf
+  420 400 400 
+  6   4    4
+  
+	file/dir
+	user owner --> rw
+	group owner --> r
+				file		dir
+4	r	read	cat			ls
+2	w	write	vi,nano		touch,mkdir
+1	x	execute	as prog		cd-->enter
+
+u	userowner
+g	groupowner
+o	others
+
+0 :  ---
+1 :  --x 
+2 :  -w- 
+3 :  -wx 
+4 :  r--
+5 :  r-x 
+6 :  rw-
+7 :  rwx
+
+/data
+owner - full rwx - 7
+group - full rwx - 7
+others - no  --- - 0
+0770 --> /data
+rwxrwx--- root root  /data
+1 770
+2 770
+4 770
+
+chmod <format> file/dir
+
+symbolic
+	+ : u+x,g+w,o+r
+	- : u-x,g-w,o-r
+	= : u=rw-,g=rw-,o=---
+octal
+    ugo
+	rw-r--r-- 644
+	rwxr-xr-x 755
+
+	u = rw		6
+	g = rw		6
+	o = ---		0

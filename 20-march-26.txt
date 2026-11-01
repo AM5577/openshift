@@ -1,0 +1,83 @@
+Superuser /admin = root
+non root = 
+application / system = 
+app -> app user -> read / modify ->
+		nologin -> non interactive
+		bash -> interactive
+
+User Mgmt
+/etc/passwd - user details
+	group  - group details
+			 primary,secondary / supplimentry
+	shadow - user passwd hash, passwd ageing details
+	
+	~/data.txt
+		ls -l 
+		student staff
+		
+	useranem:x:uid:gid:cmments:home dir:shell
+	add user smith
+	useradd smith
+		smith:x:1013:1100::/home/smith:/bin/bash
+		
+	-u 1234
+	-g staff
+	-G wheel
+	-c "test user"
+	-d /user/smith
+	-s /sbin/nologin
+	groupadd staff
+	useradd -u 1234 -g staff -G wheel -c "test user" -s /bin/sh smith
+		smith:x:1234:1200::/home/smith:/bin/sh
+		wheel:x:10:student,u1,smith
+		smith:!:20527:1:90:7:::
+		/home/smith
+			.bashrc				cp from /etc/skel
+			.bash_profile
+		
+
+
+
+# passwd username
+$ passwd
+
+groupadd grpname
+groupdel groupname
+
+
+useradd -opt value . . . username
+usermod -c "xxx" smith
+userdel
+
+RBAC
+login -> 
+		sbin - 1000
+
+%wheel  ALL		=	(ALL)       useradd,userdel
+	   HOSTS					cmd
+
+new grp in sudo
+new user in sudo
+/etc/sudoers       -> file
+/etc/sudoer.d/	   - > dir
+xyz --> sudo template
+	%xyz ALL=(ALL) ALL
+smith1
+	%xyz ALL=(ALL) NOPASSWD: useradd,userdel
+	
+
+SERVER
+	App team - 2-3
+	Linux Admin -ALL
+	Backup  2-3
+	Storage  9-10
+	IAM -5-6
+
+
+s1,s2,s3 -> storage
+
+/etc/sudoer.d/	   - > dir
+storage
+	%storage ALL=(ALL) NOPASSWD: a,c,b,d
+iam 
+	%iam ALL=(ALL) useradd,userdel,passwd,group....

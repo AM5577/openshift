@@ -1,0 +1,52 @@
+dnf install container-tools git -y
+
+
+podman build -t docker.io/amitfreeze/openshift_microservice:userservice -f ./userService/Containerfile ./userService
+podman build -t docker.io/amitfreeze/openshift_microservice:productservice -f ./productService/Containerfile ./productService
+podman build -t docker.io/amitfreeze/openshift_microservice:orderservice -f ./orderService/Containerfile ./orderService
+podman build -t docker.io/amitfreeze/openshift_microservice:frontend -f ./frontend/Containerfile ./frontend
+
+
+podman push docker.io/amitfreeze/openshift_microservice:userservice
+podman push docker.io/amitfreeze/openshift_microservice:productservice
+podman push docker.io/amitfreeze/openshift_microservice:orderservice
+podman push docker.io/amitfreeze/openshift_microservice:frontend
+
+
+podman network create ecommerce-net
+
+podman run -d --name mysql-service --network ecommerce-net -e MYSQL_ROOT_PASSWORD=rootpassword -e MYSQL_DATABASE=ecommerce mysql:8.0
+
+podman run -d --name user-service --network ecommerce-net docker.io/amitfreeze/openshift_microservice:userservice
+
+podman run -d --name product-service --network ecommerce-net docker.io/amitfreeze/openshift_microservice:productservice
+
+podman run -d --name order-service --network ecommerce-net -e DB_HOST=mysql-service -e DB_PASSWORD=rootpassword docker.io/amitfreeze/openshift_microservice:orderservice
+
+podman run -d --name frontend-service --network ecommerce-net -p 5000:5000  docker.io/amitfreeze/openshift_microservice:frontend
+
+
+------------------------------------
+
+
+config map: config-and-db.yaml
+
+
+
+
+
+
+
+
+course = devops
+course: devops
+
+
+
+
+
+
+
+
+
+

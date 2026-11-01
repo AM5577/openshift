@@ -1,0 +1,32 @@
+
+cmd -opts args
+ls
+ls -l 
+ls -l /etc
+ls -l /var /etc
+ls --help
+OR
+man ls
+
+cmd sub-command -opts args
+dnf install -y mariadb httpd
+
+
+
+demo@devops:~ $
+~  : (/home/demo)
+$ : non root user
+		limited - /usr/bin
+		~ , /tmp
+root@devops:~ #
+~ = /root	
+# : full access	
+
+ls -ltrh /etc
+ -ltrhiZda
+ 
+0/1
+01010 = 5bit
+01010101 = 8bits = 1 byte
+					 11781 bytes
+ 

@@ -1,0 +1,22 @@
+links
+	sym links
+	Symbolic link---->Path
+	Soft link
+	
+	hard link----> inode num of target file
+	
+	ln -opt target link
+
+input - keyboard
+output - monitor 
+
+input stream
+output stream
+error stream -> def dev of output
+
+<
+> output
+		
+stdin	0	< filename
+stdout	1   >  >> filename
+stderr	2   2> 2>> filename 

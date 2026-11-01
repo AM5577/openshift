@@ -1,0 +1,48 @@
+
+lab - clone - python -> build -push-deploy
+lab - git init->create a index file -> push to github -> 
+		another server --> clone repo from github -> build image - > push -> deploy
+		
+		
+url 
+		google.com/search?q=openshift
+		@app.route('/search')
+		def search(method=get['q']) {
+			print{q}
+		}
+		
+		google.com/search?q=openshift
+		google.com/search?q=url+full+form
+
+####build
+podman build -f frontend/Containerfile -t docker.io/amitfreeze/openshift_microservice:frontend
+podman build -f orderService/Containerfile -t docker.io/amitfreeze/openshift_microservice:orderservice
+podman build -f productService/Containerfile -t docker.io/amitfreeze/openshift_microservice:productservice
+podman build -f userService/Containerfile -t docker.io/amitfreeze/openshift_microservice:userservice
+
+####push
+podman login
+podman push  docker.io/amitfreeze/openshift_microservice:frontend
+podman push  docker.io/amitfreeze/openshift_microservice:orderservice
+podman push  docker.io/amitfreeze/openshift_microservice:productservice
+podman push  docker.io/amitfreeze/openshift_microservice:userservice
+
+#login to diff server
+#pull
+podman pull  docker.io/amitfreeze/openshift_microservice:frontend
+podman pull  docker.io/amitfreeze/openshift_microservice:orderservice
+podman pull  docker.io/amitfreeze/openshift_microservice:productservice
+podman pull  docker.io/amitfreeze/openshift_microservice:userservice
+
+#create contianer network
+podman network create microservice_network
+
+#deploy		
+podman run -d --name frontend --network microservice_network -p 5000:5000 docker.io/amitfreeze/openshift_microservice:frontend
+podman run -d --name orderservice --network microservice_network -p 5003:5003 docker.io/amitfreeze/openshift_microservice:orderservice
+podman run -d --name productservice --network microservice_network -p 5002:5002 docker.io/amitfreeze/openshift_microservice:productservice
+podman run -d --name userservice --network microservice_network -p 5001:5001 docker.io/amitfreeze/openshift_microservice:userservice
+
+
+
+

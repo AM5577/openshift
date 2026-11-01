@@ -1,0 +1,55 @@
+code--->run
+	   deploy-install python - prepare -run 
+									  - testing		
+	    automation (Jenkins-agent)
+			clone---------->deploy
+
+100X
+2c 2r
+compose-				
+1 - frontend - .25 , 400mb
+1 - userservice  .25 , 400mb
+1 - productservice  .25 , 400mb
+1 - orderserice  .25 , 400mb	
+
+
+
+Kubernetes
+google - borg -> kubernetes - k8s
+
+
+VM-->
+
+2CPU - 4CPU
+4GB RAM - 8GB
+20GB
+
+
+
+
+
+
+vm - 4c,8g,20g
+OS- Server with GUI
+install podman - 
+	dnf install container-tools
+download kind command
+	curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.32.0/kind-linux-amd64
+	chmod +x kind
+	sudo cp kind /usr/local/bin
+	
+install podman desktop using FLATPACK
+	sudo dnf install flatpak -y
+	flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+	flatpak install flathub io.podman_desktop.PodmanDesktop
+
+
+
+
+
+
+
+
+
+
+

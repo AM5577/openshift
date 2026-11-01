@@ -1,0 +1,49 @@
+find /etc -opt value -opt value
+
+demo.txt
+
+name,size,perm,ownership details,type
+exec
+
+find / -name demo.txt
+find /home -size +1M -size -2M
+find / -type f -perm 666
+find /home -user student -type d -perm 644
+
+
+find all dir where the perm = 777
+change the dir perm to 755
+
+find /root -type d -perm 755 -exec ls -l {} \;
+
+locate demo.txt
+	db -> demo.txt -> path
+	
+os 
+	/
+boot /boot
+user files
+	/home
+	/tmp
+app files	
+	/var/db
+	/var/www/html
+	
+os 
+	/ --> 20/18gb
+	/ --> 20/2gb
+	/ --> 20/0gb
+boot 
+	/boot
+swap 
+	--	
+MB - feature
+		Firmware - BIOS - 
+				   UEFI - 
+
+type	#	start	end		total
+p		1	1024	50000	---  ----> 16byte
+p		2	50001	80000	---  ----> 16byte
+p		3	80001	50000	---  ----> 16byte
+E		4	1024	50000	---  ----> 16byte
+L*15			   

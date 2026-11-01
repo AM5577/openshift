@@ -1,0 +1,79 @@
+
+i=1
+while [ $i -le 20 ]
+do
+	echo $i
+	((i++))
+
+done
+
+while true
+do
+	echo $i
+	((i++))
+
+done
+
+
+while read -r line
+do
+	echo $line
+done < "servers.txt"
+
+
+while true
+do
+	echo "press [CTRL+C] to teminate"
+	sleep 1
+done
+
+-----------------
+
+
+every 10mins
+checks sshd
+if not running then start
+else no action
+
+
+scheduled tasks
+	A - 1 time job
+		dnf update -y ; reboot - @6pm this sunday
+		at command - setup job
+		at timeseq
+		at> xxxx
+		at> ctrl+d (save and exit)
+		
+		atd - deamon -> enabled,actice
+		
+		
+	B - reccuring jobs
+		crontab
+		-l : list all jobs for current user
+		-e : edit / create a new job for current user
+		-u : specify username
+		-r : remove all jobs
+		crond
+		
+every day 3:00pm
+  0 15 
+		  15:00
+		  hh:mm
+		  
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month  jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name  command to be executed		  
+
+  0 15  *  *  mon,tue,wed,thu  echo "hi" >> /tmp/greet.txt
+  */10 * * * *  bash /root/servicecheck.sh 
+
+8:00
+8:10
+8:20
+9:00
+9:10

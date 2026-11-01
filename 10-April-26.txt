@@ -1,0 +1,55 @@
+
+part -> apply fs -> fstab - > use
+fdisk    mkfs.<fs>   mount/ umount   
+
+persistant mount
+/etc/fstab
+/dev/nvme0n2p1 /d2p1 ext4 defaults 0 0
+
+mount -a
+	syntax error
+	attempt to mount all devices
+	
+	2g -> pri=10 
+	3g  -> pri=9
+	4gb -> defaults -> activated on boot
+	
+
+PV
+	add new pv
+		pvcreate /dev/device
+	remove pv
+		pvremove /dev/device # make sure lvm data is migrated
+	move lvm data from pv
+		pvmove /dev/device
+VG
+	create vg
+		vgcreate vgname /dev/pvdevice
+	extend vg
+		vgextend vgname /dev/device # add new pv 
+	reduce vg
+		vgreduce vgname /dev/device # make sure lvm data is migrated
+	remove vg
+		vgremove vgname # all lvs from this vg are not in use and removed
+LV	
+	create lv
+		lvcreate -L size{M,G,T,P} -n lv_name vg_name
+	extend lv
+		lvextend -L targetsize /dev/vgname/lvname
+		ext4 - resize2fs /dev/vgname/lvname
+		xfs - xfs_growfs /dev/vgname/lvname
+	reduce lv
+	
+		umount /mountpoint
+		e2fsck -f /dev/vgname/lvname
+		
+		resize2fs /dev/mapper/vgname-lvname targetsize
+		
+		lvreduce -L 5G /dev/mapper/vg_data-lv_lv1
+		
+		
+		mount /dev/mapper/vgname-lvname /mountpoint
+		df -h
+
+	remove lv
+		lvremove /dev/vgname/lvname # lv is umounted
